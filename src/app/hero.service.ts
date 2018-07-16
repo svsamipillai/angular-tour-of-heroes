@@ -1,20 +1,21 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable, throwError as observableThrowError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Observable, throwError as observableThrowError } from "rxjs";
+import { catchError, map } from "rxjs/operators";
 
-import { Hero } from './hero';
+import { Hero } from "./hero";
 
 @Injectable()
 export class HeroService {
-  private heroesUrl = 'app/heroes'; // URL to web api
+  private heroesUrl = "app/heroes"; // URL to web api
 
   constructor(private http: HttpClient) {}
 
   getHeroes() {
-    return this.http
-      .get<Hero[]>(this.heroesUrl)
-      .pipe(map(data => data), catchError(this.handleError));
+    return this.http.get<Hero[]>(this.heroesUrl).pipe(
+      map(data => data),
+      catchError(this.handleError)
+    );
   }
 
   getHero(id: number): Observable<Hero> {
@@ -32,7 +33,7 @@ export class HeroService {
 
   delete(hero: Hero) {
     const headers = new Headers();
-    headers.append('Content-Type', 'application/json');
+    headers.append("Content-Type", "application/json");
 
     const url = `${this.heroesUrl}/${hero.id}`;
 
@@ -42,7 +43,7 @@ export class HeroService {
   // Add new Hero
   private post(hero: Hero) {
     const headers = new Headers({
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json"
     });
 
     return this.http
@@ -53,7 +54,7 @@ export class HeroService {
   // Update existing Hero
   private put(hero: Hero) {
     const headers = new Headers();
-    headers.append('Content-Type', 'application/json');
+    headers.append("Content-Type", "application/json");
 
     const url = `${this.heroesUrl}/${hero.id}`;
 
@@ -62,6 +63,6 @@ export class HeroService {
 
   private handleError(res: HttpErrorResponse | any) {
     console.error(res.error || res.body.error);
-    return observableThrowError(res.error || 'Server error');
+    return observableThrowError(res.error || "Server error");
   }
 }

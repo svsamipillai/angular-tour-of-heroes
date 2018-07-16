@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Hero } from './hero';
-import { HeroService } from './hero.service';
+import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { Hero } from "./hero";
+import { HeroService } from "./hero.service";
 
 @Component({
-  selector: 'my-heroes',
-  templateUrl: './heroes.component.html',
-  styleUrls: ['./heroes.component.css']
+  selector: "my-heroes",
+  templateUrl: "./heroes.component.html",
+  styleUrls: ["./heroes.component.css"]
 })
 export class HeroesComponent implements OnInit {
   heroes: Hero[];
@@ -23,7 +23,7 @@ export class HeroesComponent implements OnInit {
       .subscribe(
         heroes => (this.heroes = heroes),
         error => (this.error = error)
-      )
+      );
   }
 
   addHero(): void {
@@ -58,6 +58,6 @@ export class HeroesComponent implements OnInit {
   }
 
   gotoDetail(): void {
-    this.router.navigate(['/detail', this.selectedHero.id]);
+    this.router.navigate(["/detail", this.selectedHero.id]);
   }
 }

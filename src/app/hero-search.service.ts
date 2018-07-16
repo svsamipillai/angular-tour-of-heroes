@@ -1,9 +1,9 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable, throwError as observableThrowError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Observable, throwError as observableThrowError } from "rxjs";
+import { catchError } from "rxjs/operators";
 
-import { Hero } from './hero';
+import { Hero } from "./hero";
 
 @Injectable()
 export class HeroSearchService {
@@ -17,6 +17,6 @@ export class HeroSearchService {
 
   private handleError(res: HttpErrorResponse) {
     console.error(res.error);
-    return observableThrowError(res.error || 'Server error');
+    return observableThrowError(res.error || "Server error");
   }
 }
