@@ -15,15 +15,10 @@ export class MovieService {
   constructor(private http: HttpClient) {}
 
   getMovies() {
-    return this.http.get<Movie[]>(this.moviesUrl).pipe(
+    console.log("Retrieving movies list.");
+    return this.http.get<Movie>(this.moviesUrl).pipe(
       map(data => data),
       catchError(this.handleError)
-    );
-  }
-
-  getMovie(title: string): Observable<Movie> {
-    return this.getMovies().pipe(
-      map(movies => movies.find(movie => movie.Title === title))
     );
   }
 
